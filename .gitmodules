@@ -1,0 +1,3 @@
+[submodule "ext/replxx"]
+	path = ext/replxx
+	url = git://github.com/AmokHuginnsson/replxx.git
