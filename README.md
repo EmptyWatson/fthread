@@ -11,7 +11,7 @@ for linux, a tool used to pause or freeze specified threads
 # Dependencies
 - [cxxopts](https://github.com/jarro2783/cxxopts)
 - [easyloggingpp](https://github.com/amrayn/easyloggingpp)
-- [replxx](https://github.com/search?q=replxx)
+- [replxx](https://github.com/AmokHuginnsson/replxx)
 - [StringUtils](https://github.com/hungtatai/StringUtils)
 
 
