@@ -1,22 +1,22 @@
-# [English Readme](https://github.com/EmptyWatson/fthread/blob/main/README.md)
+# [中文版Readme](https://github.com/EmptyWatson/fthread/blob/main/README_zh.md)
 # fthread
-适用于linux，暂停或冻结指定线程的工具。
+for linux, a tool used to pause or freeze specified threads
 
-# 背景
-- 分析多线程程序的时候，需要排除其中几个线程的干扰，想将其暂停以观察系统的表现
-- gdb提供了相应的功能，但是在需要批量暂停线程时，使用很不方便
-- 在网络上找了一圈，没有找到提供批量暂停线程功能的工具
+# Background
+- When analyzing multi-threaded programs, you need to exclude the interference of several of these threads, and you want to pause them to observe the performance of the system
+- The gdb provides corresponding functionality but is inconvenient to use when a batch pause thread is needed
+- Looking around the network with no tools providing bulk pause thread functionality
 
 
-# 依赖
+# Dependencies
 - [cxxopts](https://github.com/jarro2783/cxxopts)
 - [easyloggingpp](https://github.com/amrayn/easyloggingpp)
 - [replxx](https://github.com/search?q=replxx)
 - [StringUtils](https://github.com/hungtatai/StringUtils)
 
 
-# 编译
-## 准备环境
+# Build
+## Setup environment
 ```
 git clone https://github.com/EmptyWatson/fthread.git
 cd fthread
@@ -24,7 +24,7 @@ chmod +x ./setup_dev.sh
 ./setup_dev.sh
 ```
 
-## 编译
+## Compile
 ```
 mkdir build
 cd build
@@ -32,21 +32,25 @@ cmake ..
 make -j
 ```
 
-## 裁剪符号
+## Strip
 ```
 eu-strip -f ./fthread.debug ./fthread
 ```
 
-# 使用
-## 能力
-- list 枚举指定进程的所有线程/已经冻结后的线程(每次执行list命令时都会获取进程当前的线程列表)
-- find 查找线程名字满足条件的所有线程，并列举出来(仅支持正则表达式)
-- freeze 暂停线程名字、线程索引号、线程ID中任意一个满足指定条件的线程，或冻结上一次find的结果(支持正则表达式、用","分割的数字列表和用"-"分割的数字范围)
-- unfreeze 恢复满足指定条件的线程，或恢复上一次find的结果(方法同freeze)
+# Use
+## Capabilities
+- list 
+  List all threads / frozen threads for the specified process (get the current thread list of the process each time the list command is executed)
+- find 
+  Find all threads where the thread name meets criteria and list (regular expressions only)
+- freeze 
+  Pause the thread name, the thread index number, any thread in the thread ID that meets the specified condition, or freeze the result of the last find (support regular expressions, with "," split number list, and with "-" split number range)
+- unfreeze 
+  Unfreeze a thread that meets the specified condition, or restore the result of the last find (method as freeze)
 
-## 示例
+## Examples
 
-### 启动
+### Start fthread
 ``` 
 [root@localhost build]# ./fthread -p $(pidof java)
 2022-01-29 11:23:31,303 INFO --------->fthread is starting......
@@ -58,7 +62,7 @@ Type '.quit' or '.exit' to exit
 fthread>
 ```
 
-### 查看帮助
+### Get help info
 ```
 fthread> h
 2022-01-29 11:24:39,057 INFO
@@ -85,7 +89,7 @@ fthread>
 
 ```
 
-### 列举线程
+### List all threads
 ```
 fthread> l
 IDX      Thread Id        Status       Name
@@ -111,7 +115,7 @@ IDX      Thread Id        Status       Name
 
 ```
 
-### 冻结线程
+### Freeze threads
 ```
 fthread> freeze 1-3
 freeze threads ....
@@ -133,7 +137,7 @@ fthread>
 
 ```
 
-### 列举已经被冻结的线程
+### List the threads that have already been frozen 
 ```
 fthread> list freezed
 IDX      Thread Id        Status       Name
@@ -161,7 +165,7 @@ IDX      Thread Id        Status       Name
 
 ```
 
-### 解冻线程
+### Unfreeze threads
 ```
 fthread> unfreeze 2-3
 unfreeze threads ....
@@ -176,7 +180,7 @@ unfreeze threads finish, succ cnt 19
 4289,4319
 ```
 
-### 查找线程
+### Find threads
 ```
 fthread> find .*-thread.*
 finded threads:
@@ -192,7 +196,7 @@ IDX      Thread Id        Status       Name
 
 ```
 
-### 冻结查找到的结果
+### Freeze the found results
 ```
 fthread> freeze
 no args, freeze finded threadsfreeze threads ....
@@ -220,7 +224,7 @@ IDX      Thread Id        Status       Name
 ...
 ```
 
-### 退出
+### Quit
 ```
 fthread> q
 2022-01-29 11:36:08,834 INFO
@@ -228,4 +232,4 @@ Exiting fthread
 ```
 
 # TODO
-- 线程的状态是在工具内部维护的，没有去读取真实的状态
+- The state of the thread is maintained inside the tool without going to read the true state
