@@ -5,8 +5,9 @@ for linux, a tool used to pause or freeze specified threads
 # Background
 - When analyzing multi-threaded programs, you need to exclude the interference of several of these threads, and you want to pause them to observe the performance of the system
 - The gdb provides corresponding functionality but is inconvenient to use when a batch pause thread is needed
-- Looking around the network with no tools providing bulk pause thread functionality
+- Looking around the internet with no tools providing bulk pause thread functionality
 
+  So, dirty my hand, just write one.
 
 # Dependencies
 - [cxxopts](https://github.com/jarro2783/cxxopts)
